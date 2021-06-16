@@ -19,20 +19,20 @@
             </Border>
             <Button Name="btnVolgende" Content="Volgende" Margin="45,129,45,791" Background="#FF1368CE" Foreground="White" FontSize="24"/>
             <Button Name="btnVorige" Content="Vorige" Margin="45,84,45,836" Background="#FF1368CE" Foreground="White" FontSize="24"/>
-            <Label Content="Vraag 1" Margin="50,25,50,881" RenderTransformOrigin="0.5,0.356" FontSize="30" FontFamily="Segoe UI Semibold" Foreground="#E5303030"/>
+            <Label Name="lblQuestionNumber" Content="Vraag 1" Margin="50,25,10,881" RenderTransformOrigin="0.5,0.356" FontSize="30" FontFamily="Segoe UI Semibold" Foreground="#E5303030"/>
         </Grid>
         <Grid Background="White" HorizontalAlignment="Left" Height="959" Margin="1692,90,0,0" VerticalAlignment="Top" Width="220">
             <Border BorderThickness="3 0 0 0" BorderBrush="#28000000">
             </Border>
-            <TextBox Name="txbTimer" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="Vul in" Margin="30,68,61,851" FontSize="22" Foreground="#B0303030"/>
+            <TextBox Name="txbTimer" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="30" Margin="30,68,61,851" FontSize="22" Foreground="#B0303030"/>
             <Label Width="129" Height="43" Content="Tijd limiet" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,25,0,0" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="#E5303030"/>
             <Label Width="59" Height="40" Content="sec" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,68,0,0" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="#E5303030"/>
         </Grid>
         <Grid Background="White" Height="120" Margin="260,140,260,0" VerticalAlignment="Top">
             <TextBox BorderThickness="0" Name="txbQuizVraag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="44" Margin="303,40,303,36" TextWrapping="Wrap" Text="Vul de vraag in" Width="786" BorderBrush="{x:Null}" FontSize="30" FontFamily="Segoe UI Semilight" Foreground="#CC303030"/>
         </Grid>
-        <Grid Background="#B2FFFFFF" Height="491" Margin="562,290,562,0" VerticalAlignment="Top">
-            <Border BorderThickness="3" BorderBrush="#28000000">
+        <Grid Name="gridImage" Background="#B2FFFFFF" Height="491" Margin="562,290,562,0" VerticalAlignment="Top">
+            <Border Name="borderGridImage" BorderThickness="3" BorderBrush="#28000000">
                 <Image Name="imgQuestion"/>
             </Border>
             <Button Name="btnImage" VerticalAlignment="Center" Width="172" Height="51" Content="Voeg albeelding toe" Margin="0,420,0,20" FontSize="18" FontFamily="Segoe UI Semibold" BorderBrush="#28000000"/>

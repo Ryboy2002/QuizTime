@@ -27,6 +27,9 @@ namespace QuizTime
         private Microsoft.Win32.OpenFileDialog _image = new Microsoft.Win32.OpenFileDialog();
         private string _imgNaam;
         private string _selectedFileName;
+        private int _questionNumber = 1;
+        private int _rightAnswer;
+
         //private string _imgfile;
         public QuizAanmaken()
         {
@@ -46,6 +49,7 @@ namespace QuizTime
             btnSave.Click += BtnSave_Click;
             btnVolgende.Click += BtnVolgende_Click;
             btnImage.Click += BtnImage_Click;
+            btnVorige.Click += BtnVorige_Click;
 
             #endregion
 
@@ -54,6 +58,15 @@ namespace QuizTime
             polygonColl.Add(new Point(40, 10));
             polygonColl.Add(new Point(80, 80));
             polygonTriangle.Points = polygonColl;
+        }
+
+        private void BtnVorige_Click(object sender, RoutedEventArgs e)
+        {
+            if(_questionNumber != 1)
+            {
+                _questionNumber--;
+            }          
+            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
         }
 
         private static String GetDestinationPath(string filename, string foldername)
@@ -78,37 +91,64 @@ namespace QuizTime
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(_selectedFileName);
                 bitmap.EndInit();
-                imgQuestion.Source = bitmap;
-
-             
+                imgQuestion.Source = bitmap;              
+                gridImage.Background = null;
+                borderGridImage.BorderThickness = new Thickness(0);
             }
         }
 
         private void BtnVolgende_Click(object sender, RoutedEventArgs e)
         {
+            if ((bool)cboxCorrectAnswer1.IsChecked)
+            {
+                _rightAnswer = 1;
+            } else if ((bool)cboxCorrectAnswer2.IsChecked)
+            {
+                _rightAnswer = 2;
+            } else if ((bool)cboxCorrectAnswer3.IsChecked)
+            {
+                _rightAnswer = 3;
+            } else if ((bool)cboxCorrectAnswer4.IsChecked)
+            {
+                _rightAnswer = 4;
+            } else
+            {
+                _rightAnswer = 0;
+            }
             List<SaveQuestions> question = new List<SaveQuestions>
             {
                 new SaveQuestions
                 {
-                    question = "Is Ryan lekker",
-                    answer1 = "Perhaps",
-                    answer2 = "Hmm yes",
-                    answer3 = "Neen",
-                    answer4 = "JAAAAAAAAAAHAAAAA",
-                    rightAnswer = 1,
+                    question = txbQuizVraag.Text,
+                    answer1 = txbAnswer1.Text,
+                    answer2 = txbAnswer2.Text,
+                    answer3 = txbAnswer3.Text,
+                    answer4 = txbAnswer4.Text,
+                    rightAnswer = _rightAnswer,
                     image = "ryan.jpg",
-                    timer = 30
+                    timer = Convert.ToInt32(txbTimer.Text)
                 },
             };
             listQuestions.Add(question);
+ 
+            _questionNumber++;
+            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
+            _imgNaam = "";
+            _selectedFileName = "";
 
-            MessageBox.Show(_selectedFileName);
+            gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
+            borderGridImage.BorderThickness = new Thickness(3);
+            imgQuestion.Source = null;
 
-            // string name = System.IO.Path.GetFileName(_selectedFileName);
-            string destinationPath = GetDestinationPath(_imgNaam, "Images");
+            if (_selectedFileName == _image.FileName && _image.FileName != "")
+            {
+                string destinationPath = GetDestinationPath(_imgNaam, "Images");
+                File.Copy(_selectedFileName, destinationPath, true);
 
-            File.Copy(_selectedFileName, destinationPath, true);
-
+                MessageBox.Show(_imgNaam);
+                MessageBox.Show(_selectedFileName);
+            }
+            
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

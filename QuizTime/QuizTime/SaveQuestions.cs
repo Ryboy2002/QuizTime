@@ -8,16 +8,6 @@ namespace QuizTime
 {
     class SaveQuestions
     {
-        public string image
-        {
-            get; set;
-        } 
-
-        public int timer
-        {
-            get; set;
-        }
-
         public string question
         {
             get; set;
@@ -44,6 +34,16 @@ namespace QuizTime
         }
 
         public int rightAnswer
+        {
+            get; set;
+        }
+
+        public string image
+        {
+            get; set;
+        } 
+
+        public int timer
         {
             get; set;
         }
