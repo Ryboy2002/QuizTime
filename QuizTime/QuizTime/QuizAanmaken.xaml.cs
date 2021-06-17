@@ -28,7 +28,9 @@ namespace QuizTime
         private string _imgNaam;
         private string _selectedFileName;
         private int _questionNumber = 1;
+        private int _listNumber;
         private int _rightAnswer;
+        private int _numberOfQuestions;
 
         //private string _imgfile;
         public QuizAanmaken()
@@ -58,15 +60,6 @@ namespace QuizTime
             polygonColl.Add(new Point(40, 10));
             polygonColl.Add(new Point(80, 80));
             polygonTriangle.Points = polygonColl;
-        }
-
-        private void BtnVorige_Click(object sender, RoutedEventArgs e)
-        {
-            if(_questionNumber != 1)
-            {
-                _questionNumber--;
-            }          
-            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
         }
 
         private static String GetDestinationPath(string filename, string foldername)
@@ -115,7 +108,10 @@ namespace QuizTime
             {
                 _rightAnswer = 0;
             }
-            List<SaveQuestions> question = new List<SaveQuestions>
+                  
+            if (_numberOfQuestions < _questionNumber)
+            {
+                List<SaveQuestions> question = new List<SaveQuestions>
             {
                 new SaveQuestions
                 {
@@ -125,16 +121,39 @@ namespace QuizTime
                     answer3 = txbAnswer3.Text,
                     answer4 = txbAnswer4.Text,
                     rightAnswer = _rightAnswer,
-                    image = "ryan.jpg",
+                    image = _imgNaam,
                     timer = Convert.ToInt32(txbTimer.Text)
                 },
             };
-            listQuestions.Add(question);
- 
+                listQuestions.Add(question);
+                _numberOfQuestions++;
+            } else
+            {
+                listQuestions[_listNumber][0].answer1 = txbAnswer1.Text;
+                listQuestions[_listNumber][0].answer2 = txbAnswer2.Text;
+                listQuestions[_listNumber][0].answer3 = txbAnswer3.Text;
+                listQuestions[_listNumber][0].answer4 = txbAnswer4.Text;
+                listQuestions[_listNumber][0].rightAnswer = _rightAnswer;
+                listQuestions[_listNumber][0].question = txbQuizVraag.Text;
+                listQuestions[_listNumber][0].timer = Convert.ToInt32(txbTimer.Text);
+            }
+
             _questionNumber++;
+            _listNumber = _questionNumber - 1;
+            
             lblQuestionNumber.Content = $"Vraag {_questionNumber}";
             _imgNaam = "";
             _selectedFileName = "";
+            txbAnswer1.Text = "";
+            txbAnswer2.Text = "";
+            txbAnswer3.Text = "";
+            txbAnswer4.Text = "";
+            txbQuizVraag.Text = "";
+            txbTimer.Text = "30";
+            cboxCorrectAnswer1.IsChecked = false;
+            cboxCorrectAnswer2.IsChecked = false;
+            cboxCorrectAnswer3.IsChecked = false;
+            cboxCorrectAnswer4.IsChecked = false;
 
             gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
             borderGridImage.BorderThickness = new Thickness(3);
@@ -149,6 +168,45 @@ namespace QuizTime
                 MessageBox.Show(_selectedFileName);
             }
             
+        }
+
+        private void BtnVorige_Click(object sender, RoutedEventArgs e)
+        {
+           
+
+            if (_questionNumber != 1)
+            {
+                _questionNumber--;
+            }
+
+            _listNumber = _questionNumber - 1;
+
+            txbAnswer1.Text = listQuestions[_listNumber][0].answer1.ToString();
+            txbAnswer2.Text = listQuestions[_listNumber][0].answer2.ToString();
+            txbAnswer3.Text = listQuestions[_listNumber][0].answer3.ToString();
+            txbAnswer4.Text = listQuestions[_listNumber][0].answer4.ToString();
+            txbQuizVraag.Text = listQuestions[_listNumber][0].question.ToString();
+            txbTimer.Text = listQuestions[_listNumber][0].timer.ToString();
+
+            if (_rightAnswer == 1)
+            {
+                cboxCorrectAnswer1.IsChecked  = true;
+            }
+            else if (_rightAnswer == 2)
+            {
+                cboxCorrectAnswer2.IsChecked = true;
+            }
+            else if (_rightAnswer == 3)
+            {
+                cboxCorrectAnswer3.IsChecked = true;
+            }
+            else if (_rightAnswer == 4)
+            {
+                cboxCorrectAnswer4.IsChecked = true;
+            }
+
+
+            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

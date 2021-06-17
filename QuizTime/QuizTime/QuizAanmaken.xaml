@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize">
+        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None" >
     <Grid Background="#23000000">
         <Grid Background="White" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="1912">
             <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
@@ -85,5 +85,5 @@
             <TextBox Name="txbAnswer4" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
         </Grid>
 
-    </Grid>   
+    </Grid>
 </Window> 

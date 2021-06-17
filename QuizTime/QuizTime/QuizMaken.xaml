@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize">
+        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None">
     <Grid Background="#9D1ED2">
         <Grid Background="#9D1ED2" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="1920" Margin="-4,0">
             <Border BorderThickness="0 0 0 8" BorderBrush="#28000000"/>
             <Label Content="Quiz Maken" Margin="0,0,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" Foreground="White"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#E21B3C" Margin="166,180,1346,469">
+        <Grid Height="400" Width="400" Background="#E21B3C" Margin="170,196,1350,484">
             <Button Background="#26890C" Content="Bewerken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
             <Label Content="De FruitQuiz" HorizontalAlignment="Left" Margin="10,156,0,154" FontSize="60" FontFamily="Segoe UI Black" Foreground="White"/>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
