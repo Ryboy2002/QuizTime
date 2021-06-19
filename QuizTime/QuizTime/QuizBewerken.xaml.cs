@@ -22,7 +22,7 @@ namespace QuizTime
         public QuizBewerken(int choosenQuiz)
         {
             InitializeComponent();
-            MessageBox.Show(choosenQuiz.ToString());
+            string quizID = choosenQuiz.ToString();
         }
     }
 }

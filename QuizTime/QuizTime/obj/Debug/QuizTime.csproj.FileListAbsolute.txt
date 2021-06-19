@@ -98,3 +98,7 @@ C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Periode 4 Level 8\QuizTime\Q
 C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Periode 4 Level 8\QuizTime\QuizTime\QuizTime\QuizTime\obj\Debug\test.g.cs
 C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Periode 4 Level 8\QuizTime\QuizTime\QuizTime\QuizTime\obj\Debug\QuizBewerken.baml
 C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Periode 4 Level 8\QuizTime\QuizTime\QuizTime\QuizTime\obj\Debug\test.baml
+C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Level 8\C#\QuizTime\QuizTime\QuizTime\obj\Debug\QuizBewerken.g.cs
+C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Level 8\C#\QuizTime\QuizTime\QuizTime\obj\Debug\test.g.cs
+C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Level 8\C#\QuizTime\QuizTime\QuizTime\obj\Debug\QuizBewerken.baml
+C:\Users\Ryand\OneDrive\Documenten\ROCMN opdrachten\Level 8\C#\QuizTime\QuizTime\QuizTime\obj\Debug\test.baml

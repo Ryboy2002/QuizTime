@@ -37,7 +37,7 @@ namespace QuizTime
             btnMaken5.Click += BtnMaken_Click;
             btnMaken6.Click += BtnMaken_Click;
 
-            MySqlDataReader quizVragen = db.SelectQuizVragen("1");
+           /* MySqlDataReader quizVragen = db.SelectQuizVragen("1");
 
             while (quizVragen.Read())
             {
@@ -64,7 +64,7 @@ namespace QuizTime
                         questions.Add(question);
                     }
                 }
-            }
+            }*/
 
             MySqlDataReader quizID = db.SelectQuizID();
             while (quizID.Read())
@@ -83,24 +83,39 @@ namespace QuizTime
             switch (listID.Count)
             {
                 case 1:
+                    btnMaken1.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     break;
                 case 2:
+                    btnMaken1.Content = "Quiz bewerken";
+                    btnMaken2.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     break;
-                case 3:                
+                case 3:
+                    btnMaken1.Content = "Quiz bewerken";
+                    btnMaken2.Content = "Quiz bewerken";
+                    btnMaken3.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
                     break;
                 case 4:
+                    btnMaken1.Content = "Quiz bewerken";
+                    btnMaken2.Content = "Quiz bewerken";
+                    btnMaken3.Content = "Quiz bewerken";
+                    btnMaken4.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
                     txbQuizTitel4.Text = listTitel[3];
                     break;
                 case 5:
+                    btnMaken1.Content = "Quiz bewerken";
+                    btnMaken2.Content = "Quiz bewerken";
+                    btnMaken3.Content = "Quiz bewerken";
+                    btnMaken4.Content = "Quiz bewerken";
+                    btnMaken5.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
@@ -108,6 +123,12 @@ namespace QuizTime
                     txbQuizTitel5.Text = listTitel[4];
                     break;
                 case 6:
+                    btnMaken1.Content = "Quiz bewerken";
+                    btnMaken2.Content = "Quiz bewerken";
+                    btnMaken3.Content = "Quiz bewerken";
+                    btnMaken4.Content = "Quiz bewerken";
+                    btnMaken5.Content = "Quiz bewerken";
+                    btnMaken6.Content = "Quiz bewerken";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];

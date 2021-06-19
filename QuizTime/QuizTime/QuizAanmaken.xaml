@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None" >
+        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None" WindowState="Maximized">
     <Grid Background="#23000000">
         <Grid Background="White" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="1912">
             <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">

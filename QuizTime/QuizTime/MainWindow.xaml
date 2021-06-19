@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" ResizeMode="NoResize"  WindowStyle="None">
+        Title="MainWindow" Height="1080" Width="1920" ResizeMode="NoResize"  WindowStyle="None" WindowState="Maximized">
     <Grid Background="#D69D1ED2">
         <Grid Background="#9D1ED2" HorizontalAlignment="Left" Height="1049" VerticalAlignment="Top" Width="220"/>
         <Grid Background="#9D1ED2" HorizontalAlignment="Left" Height="1049" VerticalAlignment="Top" Width="220" Margin="1692,0,0,0"/>

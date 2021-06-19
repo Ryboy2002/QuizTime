@@ -87,6 +87,10 @@ namespace QuizTime
                 imgQuestion.Source = bitmap;              
                 gridImage.Background = null;
                 borderGridImage.BorderThickness = new Thickness(0);
+
+                MessageBox.Show(_imgNaam);
+                MessageBox.Show(_selectedFileName);
+                MessageBox.Show(_image.FileName);
             }
         }
 
@@ -127,6 +131,21 @@ namespace QuizTime
             };
                 listQuestions.Add(question);
                 _numberOfQuestions++;
+               
+                txbAnswer1.Text = "";
+                txbAnswer2.Text = "";
+                txbAnswer3.Text = "";
+                txbAnswer4.Text = "";
+                txbQuizVraag.Text = "";
+                txbTimer.Text = "30";
+                cboxCorrectAnswer1.IsChecked = false;
+                cboxCorrectAnswer2.IsChecked = false;
+                cboxCorrectAnswer3.IsChecked = false;
+                cboxCorrectAnswer4.IsChecked = false;
+
+                gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
+                borderGridImage.BorderThickness = new Thickness(3);
+                imgQuestion.Source = null;
             } else
             {
                 listQuestions[_listNumber][0].answer1 = txbAnswer1.Text;
@@ -136,29 +155,13 @@ namespace QuizTime
                 listQuestions[_listNumber][0].rightAnswer = _rightAnswer;
                 listQuestions[_listNumber][0].question = txbQuizVraag.Text;
                 listQuestions[_listNumber][0].timer = Convert.ToInt32(txbTimer.Text);
+                listQuestions[_listNumber][0].image = _imgNaam;
             }
 
             _questionNumber++;
+            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
             _listNumber = _questionNumber - 1;
             
-            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
-            _imgNaam = "";
-            _selectedFileName = "";
-            txbAnswer1.Text = "";
-            txbAnswer2.Text = "";
-            txbAnswer3.Text = "";
-            txbAnswer4.Text = "";
-            txbQuizVraag.Text = "";
-            txbTimer.Text = "30";
-            cboxCorrectAnswer1.IsChecked = false;
-            cboxCorrectAnswer2.IsChecked = false;
-            cboxCorrectAnswer3.IsChecked = false;
-            cboxCorrectAnswer4.IsChecked = false;
-
-            gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
-            borderGridImage.BorderThickness = new Thickness(3);
-            imgQuestion.Source = null;
-
             if (_selectedFileName == _image.FileName && _image.FileName != "")
             {
                 string destinationPath = GetDestinationPath(_imgNaam, "Images");
@@ -166,8 +169,17 @@ namespace QuizTime
 
                 MessageBox.Show(_imgNaam);
                 MessageBox.Show(_selectedFileName);
+                _imgNaam = "";
+                _selectedFileName = "";
             }
-            
+            else
+            {
+                MessageBox.Show(_imgNaam);
+                MessageBox.Show(_selectedFileName);
+                MessageBox.Show(_image.FileName);
+                MessageBox.Show("Niet gelukt");
+            }
+
         }
 
         private void BtnVorige_Click(object sender, RoutedEventArgs e)
@@ -187,6 +199,18 @@ namespace QuizTime
             txbAnswer4.Text = listQuestions[_listNumber][0].answer4.ToString();
             txbQuizVraag.Text = listQuestions[_listNumber][0].question.ToString();
             txbTimer.Text = listQuestions[_listNumber][0].timer.ToString();
+            
+            if (listQuestions[_listNumber][0].image != "")
+            {
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(listQuestions[_listNumber][0].image);
+                bitmap.EndInit();
+                imgQuestion.Source = bitmap;
+                gridImage.Background = null;
+                borderGridImage.BorderThickness = new Thickness(0);
+            }
 
             if (_rightAnswer == 1)
             {
