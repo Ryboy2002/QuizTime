@@ -1,11 +1,11 @@
-﻿<Window x:Class="QuizTime.QuizAanmaken"
+﻿<Window x:Class="QuizTime.QuizBewerken"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None" >
+        Title="QuizBewerken" Height="1080" Width="1920">
     <Grid Background="#23000000">
         <Grid Background="White" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="1912">
             <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
@@ -85,5 +85,5 @@
             <TextBox Name="txbAnswer4" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
         </Grid>
 
-    </Grid>
-</Window> 
+    </Grid> 
+</Window>

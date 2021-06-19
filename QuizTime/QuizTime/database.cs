@@ -13,13 +13,30 @@ namespace QuizTime
     {
         private string _ConnecDB = "server=localhost;userid=root;password=;database=quiztime";
 
-        public MySqlDataReader SelectQuiz()
+        public MySqlDataReader SelectQuizVragen(string ID)
         {
             MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
             dvDBConnect.Open();
-            var sql = "SELECT ID FROM `quiz`";
+            var sql = $"SELECT `vragen` FROM `quiz` WHERE `ID` = {ID}";
             MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
-            return cmd.ExecuteReader(); 
+            return cmd.ExecuteReader();
+        }
+
+        public MySqlDataReader SelectQuizID()
+        {
+            MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
+            dvDBConnect.Open();
+            var sql = $"SELECT `id` FROM `quiz`";
+            MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
+            return cmd.ExecuteReader();
+        }
+        public MySqlDataReader SelectQuizTitel()
+        {
+            MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
+            dvDBConnect.Open();
+            var sql = $"SELECT `titel` FROM `quiz`";
+            MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
+            return cmd.ExecuteReader();
         }
 
         public void SaveQuiz(string titel, string jsonArray)

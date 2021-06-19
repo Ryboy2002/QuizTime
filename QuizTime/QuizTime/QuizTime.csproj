@@ -104,6 +104,9 @@
     <Compile Include="QuizAanmaken.xaml.cs">
       <DependentUpon>QuizAanmaken.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuizBewerken.xaml.cs">
+      <DependentUpon>QuizBewerken.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuizMaken.xaml.cs">
       <DependentUpon>QuizMaken.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,9 @@
       <DependentUpon>QuizSpelen.xaml</DependentUpon>
     </Compile>
     <Compile Include="SaveQuestions.cs" />
+    <Compile Include="test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,6 +137,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuizBewerken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuizMaken.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuizSpelen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

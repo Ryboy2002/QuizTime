@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace QuizTime
 {
@@ -19,19 +22,149 @@ namespace QuizTime
     /// </summary>
     public partial class QuizMaken : Window
     {
+        private database db = new database();
+        private int choosenQuiz = 0;
+        private List<string> listID = new List<string>();
+        private List<string> listTitel = new List<string>();
+        private List<List<SaveQuestions>> questions = new List<List<SaveQuestions>>();
         public QuizMaken()
         {
             InitializeComponent();
-            btnMaken.Click += BtnMaken_Click;         
-        }
+            btnMaken1.Click += BtnMaken_Click;
+            btnMaken2.Click += BtnMaken_Click;
+            btnMaken3.Click += BtnMaken_Click;
+            btnMaken4.Click += BtnMaken_Click;
+            btnMaken5.Click += BtnMaken_Click;
+            btnMaken6.Click += BtnMaken_Click;
 
-        private void BtnMaken_Click(object sender, RoutedEventArgs e)
+            MySqlDataReader quizVragen = db.SelectQuizVragen("1");
+
+            while (quizVragen.Read())
+            {
+                string neegeenJson = quizVragen[0].ToString();
+                JArray data = JArray.Parse(neegeenJson);
+                foreach (JArray obj in data)
+                {
+                    foreach (JObject ob in obj)
+                    {
+                        List<SaveQuestions> question = new List<SaveQuestions>
+            {
+                        new SaveQuestions
+                        {
+                            question = ob["question"].ToString(),
+                            answer1 = ob["answer1"].ToString(),
+                            answer2 = ob["answer2"].ToString(),
+                            answer3 = ob["answer3"].ToString(),
+                            answer4 = ob["answer4"].ToString(),
+                            rightAnswer = Convert.ToInt32(ob["rightanswer"]),
+                            image = ob["image"].ToString(),
+                            timer = Convert.ToInt32(ob["timer"])
+                        },
+                    };
+                        questions.Add(question);
+                    }
+                }
+            }
+
+            MySqlDataReader quizID = db.SelectQuizID();
+            while (quizID.Read())
+            {
+                listID.Add(quizID[0].ToString());
+               
+            }
+
+            MySqlDataReader quizTitel = db.SelectQuizTitel();
+            while (quizTitel.Read())
+            {
+                listTitel.Add(quizTitel[0].ToString());
+
+            }
+
+            switch (listID.Count)
+            {
+                case 1:
+                    txbQuizTitel1.Text = listTitel[0];
+                    break;
+                case 2:
+                    txbQuizTitel1.Text = listTitel[0];
+                    txbQuizTitel2.Text = listTitel[1];
+                    break;
+                case 3:                
+                    txbQuizTitel1.Text = listTitel[0];
+                    txbQuizTitel2.Text = listTitel[1];
+                    txbQuizTitel3.Text = listTitel[2];
+                    break;
+                case 4:
+                    txbQuizTitel1.Text = listTitel[0];
+                    txbQuizTitel2.Text = listTitel[1];
+                    txbQuizTitel3.Text = listTitel[2];
+                    txbQuizTitel4.Text = listTitel[3];
+                    break;
+                case 5:
+                    txbQuizTitel1.Text = listTitel[0];
+                    txbQuizTitel2.Text = listTitel[1];
+                    txbQuizTitel3.Text = listTitel[2];
+                    txbQuizTitel4.Text = listTitel[3];
+                    txbQuizTitel5.Text = listTitel[4];
+                    break;
+                case 6:
+                    txbQuizTitel1.Text = listTitel[0];
+                    txbQuizTitel2.Text = listTitel[1];
+                    txbQuizTitel3.Text = listTitel[2];
+                    txbQuizTitel4.Text = listTitel[3];
+                    txbQuizTitel5.Text = listTitel[4];
+                    txbQuizTitel6.Text = listTitel[5];
+                    break;
+
+            }
+
+            MessageBox.Show($"Er zitten {listID.Count} in de list");
+    }
+
+    private void BtnMaken_Click(object sender, RoutedEventArgs e)
         {
-            QuizAanmaken QuizAanmaken = new QuizAanmaken();
-            QuizAanmaken.Show();
-            this.Close();
-            
-            
+            Button clickedButton = sender as Button;
+
+            if (clickedButton == null) // just to be on the safe side
+                return;
+
+            if (clickedButton.Name == "btnMaken1" && txbQuizTitel1.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[0]);
+            }
+            else if (clickedButton.Name == "btnMaken2" && txbQuizTitel2.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[1]); ;
+            }
+            else if (clickedButton.Name == "btnMaken3" && txbQuizTitel3.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[2]); ;
+            }
+            else if (clickedButton.Name == "btnMaken4" && txbQuizTitel4.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[3]); ;
+            }
+            else if (clickedButton.Name == "btnMaken5" && txbQuizTitel5.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[4]); ;
+            }
+            else if (clickedButton.Name == "btnMaken6" && txbQuizTitel6.Text != "")
+            {
+                choosenQuiz = Convert.ToInt32(listID[5]); ;
+            }
+
+            if (choosenQuiz > 0)
+            {
+                QuizBewerken QuizBewerken = new QuizBewerken(choosenQuiz);
+                QuizBewerken.Show();
+                this.Close();
+            }
+            else
+            {
+                QuizAanmaken QuizAanmaken = new QuizAanmaken();
+                QuizAanmaken.Show();
+                this.Close();
+            }
         }
     }
 }
