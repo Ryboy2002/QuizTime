@@ -30,20 +30,20 @@ namespace QuizTime
             MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
             return cmd.ExecuteReader();
         }
+        public MySqlDataReader SelectedQuizTitel(string ID)
+        {
+            MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
+            dvDBConnect.Open();
+            var sql = $"SELECT `titel` FROM `quiz` WHERE ID = {ID}";
+            MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
+            return cmd.ExecuteReader();
+        }
+
         public MySqlDataReader SelectQuizTitel()
         {
             MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
             dvDBConnect.Open();
             var sql = $"SELECT `titel` FROM `quiz`";
-            MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
-            return cmd.ExecuteReader();
-        }
-
-        public MySqlDataReader SelectedQuizTitel(string ID)
-        {
-            MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
-            dvDBConnect.Open();
-            var sql = $"SELECT `titel` FROM `quiz` WHERE `ID` = {ID}";
             MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
             return cmd.ExecuteReader();
         }

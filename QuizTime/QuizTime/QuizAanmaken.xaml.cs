@@ -25,14 +25,14 @@ namespace QuizTime
         database database = new database();
         private List<List<SaveQuestions>> listQuestions = new List<List<SaveQuestions>>();
         private Microsoft.Win32.OpenFileDialog _image = new Microsoft.Win32.OpenFileDialog();
+        private string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        private List<string> listSelectedImages = new List<string>();
         private string _imgNaam;
         private string _selectedFileName;
         private int _questionNumber = 1;
         private int _listNumber;
         private int _rightAnswer;
         private int _numberOfQuestions;
-
-        //private string _imgfile;
         public QuizAanmaken()
         {
             InitializeComponent();
@@ -87,35 +87,48 @@ namespace QuizTime
                 imgQuestion.Source = bitmap;              
                 gridImage.Background = null;
                 borderGridImage.BorderThickness = new Thickness(0);
-
-                MessageBox.Show(_imgNaam);
-                MessageBox.Show(_selectedFileName);
-                MessageBox.Show(_image.FileName);
             }
         }
 
         private void BtnVolgende_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)cboxCorrectAnswer1.IsChecked)
+            if (txbAnswer1.Text == "" || txbAnswer2.Text == "")
             {
-                _rightAnswer = 1;
-            } else if ((bool)cboxCorrectAnswer2.IsChecked)
+                MessageBox.Show("Error: Vul minimaal 2 antwoorden in");
+            } else if ((bool)cboxCorrectAnswer1.IsChecked == false && (bool)cboxCorrectAnswer2.IsChecked == false && (bool)cboxCorrectAnswer3.IsChecked == false && (bool)cboxCorrectAnswer4.IsChecked == false){
+                MessageBox.Show("Error: Selecteer een juist antwoord");
+            } else if (Convert.ToInt32(txbTimer.Text) > 120)
             {
-                _rightAnswer = 2;
-            } else if ((bool)cboxCorrectAnswer3.IsChecked)
+                MessageBox.Show("Error: Maximale tijd is 120 secondes");
+            }else if (txbQuizVraag.Text == "")
             {
-                _rightAnswer = 3;
-            } else if ((bool)cboxCorrectAnswer4.IsChecked)
-            {
-                _rightAnswer = 4;
+                MessageBox.Show("Error: Vul de vraag in");
             } else
             {
-                _rightAnswer = 0;
-            }
-                  
-            if (_numberOfQuestions < _questionNumber)
-            {
-                List<SaveQuestions> question = new List<SaveQuestions>
+                if ((bool)cboxCorrectAnswer1.IsChecked)
+                {
+                    _rightAnswer = 1;
+                }
+                else if ((bool)cboxCorrectAnswer2.IsChecked)
+                {
+                    _rightAnswer = 2;
+                }
+                else if ((bool)cboxCorrectAnswer3.IsChecked)
+                {
+                    _rightAnswer = 3;
+                }
+                else if ((bool)cboxCorrectAnswer4.IsChecked)
+                {
+                    _rightAnswer = 4;
+                }
+                else
+                {
+                    _rightAnswer = 0;
+                }
+
+                if (_numberOfQuestions < _questionNumber)
+                {
+                    List<SaveQuestions> question = new List<SaveQuestions>
             {
                 new SaveQuestions
                 {
@@ -129,57 +142,70 @@ namespace QuizTime
                     timer = Convert.ToInt32(txbTimer.Text)
                 },
             };
-                listQuestions.Add(question);
-                _numberOfQuestions++;
-               
-                txbAnswer1.Text = "";
-                txbAnswer2.Text = "";
-                txbAnswer3.Text = "";
-                txbAnswer4.Text = "";
-                txbQuizVraag.Text = "";
-                txbTimer.Text = "30";
-                cboxCorrectAnswer1.IsChecked = false;
-                cboxCorrectAnswer2.IsChecked = false;
-                cboxCorrectAnswer3.IsChecked = false;
-                cboxCorrectAnswer4.IsChecked = false;
+                    listSelectedImages.Add(_selectedFileName);
+                    MessageBox.Show(_selectedFileName);
+                    listQuestions.Add(question);
+                    _numberOfQuestions++;
 
-                gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
-                borderGridImage.BorderThickness = new Thickness(3);
-                imgQuestion.Source = null;
-            } else
-            {
-                listQuestions[_listNumber][0].answer1 = txbAnswer1.Text;
-                listQuestions[_listNumber][0].answer2 = txbAnswer2.Text;
-                listQuestions[_listNumber][0].answer3 = txbAnswer3.Text;
-                listQuestions[_listNumber][0].answer4 = txbAnswer4.Text;
-                listQuestions[_listNumber][0].rightAnswer = _rightAnswer;
-                listQuestions[_listNumber][0].question = txbQuizVraag.Text;
-                listQuestions[_listNumber][0].timer = Convert.ToInt32(txbTimer.Text);
-                listQuestions[_listNumber][0].image = _imgNaam;
+                    txbAnswer1.Text = "";
+                    txbAnswer2.Text = "";
+                    txbAnswer3.Text = "";
+                    txbAnswer4.Text = "";
+                    txbQuizVraag.Text = "";
+                    txbTimer.Text = "30";
+                    cboxCorrectAnswer1.IsChecked = false;
+                    cboxCorrectAnswer2.IsChecked = false;
+                    cboxCorrectAnswer3.IsChecked = false;
+                    cboxCorrectAnswer4.IsChecked = false;
+                    _selectedFileName = "";
+                    _imgNaam = "";
+
+                    gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
+                    borderGridImage.BorderThickness = new Thickness(3);
+                    imgQuestion.Source = null;
+                }
+                else
+                {
+                    listQuestions[_listNumber][0].answer1 = txbAnswer1.Text;
+                    listQuestions[_listNumber][0].answer2 = txbAnswer2.Text;
+                    listQuestions[_listNumber][0].answer3 = txbAnswer3.Text;
+                    listQuestions[_listNumber][0].answer4 = txbAnswer4.Text;
+                    listQuestions[_listNumber][0].rightAnswer = _rightAnswer;
+                    listQuestions[_listNumber][0].question = txbQuizVraag.Text;
+                    listQuestions[_listNumber][0].timer = Convert.ToInt32(txbTimer.Text);
+
+                    if (_imgNaam == "")
+                    {
+                        listQuestions[_listNumber][0].image = listQuestions[_listNumber][0].image;
+                        listSelectedImages[_listNumber] = listSelectedImages[_listNumber];
+                    }
+                    else
+                    {
+                        listQuestions[_listNumber][0].image = _imgNaam;
+                        listSelectedImages[_listNumber] = _selectedFileName;
+                    }
+
+                    MessageBox.Show(listSelectedImages[_listNumber]);
+
+                    if(listSelectedImages[_listNumber] != "")
+                    {
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(listSelectedImages[_listNumber]);
+                        bitmap.EndInit();
+                        imgQuestion.Source = bitmap;
+                    } else
+                    {
+                        imgQuestion.Source = null;
+                        gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
+                        borderGridImage.BorderThickness = new Thickness(3);
+                    }
+                }
+
+                _questionNumber++;
+                lblQuestionNumber.Content = $"Vraag {_questionNumber}";
+                _listNumber = _questionNumber - 1;
             }
-
-            _questionNumber++;
-            lblQuestionNumber.Content = $"Vraag {_questionNumber}";
-            _listNumber = _questionNumber - 1;
-            
-            if (_selectedFileName == _image.FileName && _image.FileName != "")
-            {
-                string destinationPath = GetDestinationPath(_imgNaam, "Images");
-                File.Copy(_selectedFileName, destinationPath, true);
-
-                MessageBox.Show(_imgNaam);
-                MessageBox.Show(_selectedFileName);
-                _imgNaam = "";
-                _selectedFileName = "";
-            }
-            else
-            {
-                MessageBox.Show(_imgNaam);
-                MessageBox.Show(_selectedFileName);
-                MessageBox.Show(_image.FileName);
-                MessageBox.Show("Niet gelukt");
-            }
-
         }
 
         private void BtnVorige_Click(object sender, RoutedEventArgs e)
@@ -199,13 +225,15 @@ namespace QuizTime
             txbAnswer4.Text = listQuestions[_listNumber][0].answer4.ToString();
             txbQuizVraag.Text = listQuestions[_listNumber][0].question.ToString();
             txbTimer.Text = listQuestions[_listNumber][0].timer.ToString();
-            
-            if (listQuestions[_listNumber][0].image != "")
-            {
 
+            if (listSelectedImages[_listNumber] != null)
+            {
+              /*  baseDir = baseDir.Replace(@"bin\Debug\Images", "");
+                baseDir= baseDir + @"Images\" + listQuestions[_listNumber][0].image;*/
+                /*MessageBox.Show(baseDir);*/
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(listQuestions[_listNumber][0].image);
+                bitmap.UriSource = new Uri(listSelectedImages[_listNumber]);
                 bitmap.EndInit();
                 imgQuestion.Source = bitmap;
                 gridImage.Background = null;
@@ -237,6 +265,17 @@ namespace QuizTime
         {
             string json = JsonConvert.SerializeObject(listQuestions);
             database.SaveQuiz(txbQuizTitel.Text, json);
+
+            for (int i = 0; i < listSelectedImages.Count; i++) // Loop through List with for
+            {
+                MessageBox.Show(listSelectedImages[i]);
+                MessageBox.Show(listQuestions[i][0].image);
+               
+                string destinationPath = GetDestinationPath(listQuestions[i][0].image, "Images");
+                File.Copy(listSelectedImages[i], destinationPath, true);
+                MessageBox.Show("Gelukt");
+             
+            }
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)

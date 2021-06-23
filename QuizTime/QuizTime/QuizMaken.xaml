@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None" WindowState="Maximized">
+        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None">
     <Grid Background="#9D1ED2">
         <Grid Background="#9D1ED2" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="1920" Margin="-4,0">
             <Border BorderThickness="0 0 0 8" BorderBrush="#28000000">

@@ -138,15 +138,13 @@ namespace QuizTime
                     break;
 
             }
-
-            MessageBox.Show($"Er zitten {listID.Count} in de list");
     }
 
     private void BtnMaken_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
 
-            if (clickedButton == null) // just to be on the safe side
+            if (clickedButton == null)
                 return;
 
             if (clickedButton.Name == "btnMaken1" && txbQuizTitel1.Text != "")
