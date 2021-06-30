@@ -36,6 +36,8 @@ namespace QuizTime
         {
             QuizSpelen QuizSpelen = new QuizSpelen();
             QuizSpelen.Show();
+            /*test test = new test();
+            test.Show();*/
         }
 
         private void BtnQuizNakijken_Click(object sender, RoutedEventArgs e)

@@ -40,18 +40,19 @@ namespace QuizTime
             #region
             // Functies toevoegen
 
-            txbQuizTitel.GotFocus += TxbQuizTitel_GotFocus;
+            /*txbQuizTitel.GotFocus += TxbQuizTitel_GotFocus;
             txbTimer.GotFocus += TxbTimer_GotFocus;
             txbQuizVraag.GotFocus += TxbQuizVraag_GotFocus;
             txbAnswer1.GotFocus += TxbAnswer1_GotFocus;
             txbAnswer2.GotFocus += TxbAnswer2_GotFocus;
             txbAnswer3.GotFocus += TxbAnswer3_GotFocus;
-            txbAnswer4.GotFocus += TxbAnswer4_GotFocus;
+            txbAnswer4.GotFocus += TxbAnswer4_GotFocus;*/
             btnQuit.Click += BtnQuit_Click;
             btnSave.Click += BtnSave_Click;
             btnVolgende.Click += BtnVolgende_Click;
             btnImage.Click += BtnImage_Click;
             btnVorige.Click += BtnVorige_Click;
+            btnVerwijderImage.Click += BtnVerwijderImage_Click;
 
             #endregion
 
@@ -60,6 +61,14 @@ namespace QuizTime
             polygonColl.Add(new Point(40, 10));
             polygonColl.Add(new Point(80, 80));
             polygonTriangle.Points = polygonColl;
+        }
+
+        private void BtnVerwijderImage_Click(object sender, RoutedEventArgs e)
+        {
+            listQuestions[_listNumber][0].image = null;
+            imgQuestion.Source = null;
+            gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
+            borderGridImage.BorderThickness = new Thickness(3);
         }
 
         private static String GetDestinationPath(string filename, string foldername)
@@ -147,18 +156,18 @@ namespace QuizTime
                     listQuestions.Add(question);
                     _numberOfQuestions++;
 
-                    txbAnswer1.Text = "";
-                    txbAnswer2.Text = "";
-                    txbAnswer3.Text = "";
-                    txbAnswer4.Text = "";
-                    txbQuizVraag.Text = "";
+                    txbAnswer1.Text = null;
+                    txbAnswer2.Text = null;
+                    txbAnswer3.Text = null;
+                    txbAnswer4.Text = null;
+                    txbQuizVraag.Text = null;
                     txbTimer.Text = "30";
                     cboxCorrectAnswer1.IsChecked = false;
                     cboxCorrectAnswer2.IsChecked = false;
                     cboxCorrectAnswer3.IsChecked = false;
                     cboxCorrectAnswer4.IsChecked = false;
-                    _selectedFileName = "";
-                    _imgNaam = "";
+                    _selectedFileName = null;
+                    _imgNaam = null;
 
                     gridImage.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#B2FFFFFF");
                     borderGridImage.BorderThickness = new Thickness(3);
@@ -228,9 +237,6 @@ namespace QuizTime
 
             if (listSelectedImages[_listNumber] != null)
             {
-              /*  baseDir = baseDir.Replace(@"bin\Debug\Images", "");
-                baseDir= baseDir + @"Images\" + listQuestions[_listNumber][0].image;*/
-                /*MessageBox.Show(baseDir);*/
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(listSelectedImages[_listNumber]);
@@ -272,9 +278,11 @@ namespace QuizTime
                 MessageBox.Show(listQuestions[i][0].image);
                
                 string destinationPath = GetDestinationPath(listQuestions[i][0].image, "Images");
-                File.Copy(listSelectedImages[i], destinationPath, true);
-                MessageBox.Show("Gelukt");
-             
+                if (listSelectedImages[i] != null)
+                {
+                    File.Copy(listSelectedImages[i], destinationPath, true);
+                    MessageBox.Show("Gelukt");
+                }
             }
         }
 

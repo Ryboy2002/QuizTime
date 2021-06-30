@@ -35,7 +35,8 @@
             <Border Name="borderGridImage" BorderThickness="3" BorderBrush="#28000000">
                 <Image Name="imgQuestion"/>
             </Border>
-            <Button Name="btnImage" VerticalAlignment="Center" Width="172" Height="51" Content="Voeg albeelding toe" Margin="0,420,0,20" FontSize="18" FontFamily="Segoe UI Semibold" BorderBrush="#28000000"/>
+            <Button Width="175" Name="btnVerwijderImage" Height="51" Content="Verwijder foto" FontSize="18" FontFamily="Segoe UI Semibold" Margin="406,420,215,20" BorderBrush="#28000000"/>
+            <Button Width="175" Name="btnImage" VerticalAlignment="Center" Height="51" Content="Voeg albeelding toe" Margin="215,420,407,20" FontSize="18" FontFamily="Segoe UI Semibold" BorderBrush="#28000000"/>
         </Grid>
         <Grid Background="#E21B3C" Width="710" Height="122" HorizontalAlignment="Left" Margin="240,786,0,0" VerticalAlignment="Top">
             <Polygon Margin="20, 20, 0 , 0" Name="polygonTriangle" Stroke="White" Fill="White" StrokeThickness="5">

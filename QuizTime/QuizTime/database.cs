@@ -63,5 +63,22 @@ namespace QuizTime
             }          
            
         }
+
+        public void SaveEditQuiz(string titel, string jsonArray, string ID)
+        {
+            MySqlConnection dvDBConnect = new MySqlConnection(_ConnecDB);
+            dvDBConnect.Open();
+            try
+            {
+                var sql = $"UPDATE `quiz` SET `titel`='{titel}',`vragen`='{jsonArray}' WHERE ID = {ID}";
+                MySqlCommand cmd = new MySqlCommand(sql, dvDBConnect);
+                cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
     }
 }
