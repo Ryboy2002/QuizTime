@@ -5,26 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizSpelenUser" Height="1080" Width="1920" ResizeMode="NoResize">
+        Title="QuizSpelenUser" Height="1080" Width="1920" ResizeMode="NoResize" WindowState="Maximized">
     <Grid>
         <Grid Visibility="Collapsed" Background="#9D1ED2" Name="gridQuizVragen">
-            <Grid Width="1920" Height="140" Margin="0,0,0,909">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="140" Margin="0,0,0,0">
                 <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
                 </Border>
-                <Label Name="lblVraag" Content="De vraag" Width="300" Foreground="White" FontSize="50" FontFamily="Segoe UI Bold" HorizontalContentAlignment="Center" Margin="810,29,810,29"/>
+                <Label Name="lblVraag" Content="De vraag" Height="80" Foreground="White" FontSize="50" FontFamily="Segoe UI Bold" HorizontalContentAlignment="Center" Margin="0,0,0,0"/>
             </Grid>
-            <Grid Name="gridImage" Background="#9D1ED2" Height="491" Margin="562,180,562,0" VerticalAlignment="Top">
+            <Grid Width="790" Name="gridImage" HorizontalAlignment="Center" Background="#9D1ED2" Height="491" Margin="0,180,0,0" VerticalAlignment="Top">
                 <Border Name="borderGridImage" BorderThickness="3" BorderBrush="#28000000">
                     <Image Name="imgQuestion"/>
                 </Border>
             </Grid>
-            <Grid Background="#E21B3C" HorizontalAlignment="Left" Margin="20,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer1" Background="#E21B3C" HorizontalAlignment="Center" Margin="-945,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Polygon Margin="20, 20, 0 , 0" Name="polygonTriangle" Stroke="White" Fill="White" StrokeThickness="5">
                 </Polygon>
                 <Label Name="lblAnswer1" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 1" Width="300" FontSize="28"/>
-
             </Grid>
-            <Grid Background="#1368CE" HorizontalAlignment="Left" Margin="965,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer2" Background="#1368CE" HorizontalAlignment="Center" Margin="949,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="60" Width="60" RenderTransformOrigin="0.5,0.5">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
@@ -37,25 +36,25 @@
                 </Rectangle>
                 <Label Name="lblAnswer2" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 2" Width="300" FontSize="28"/>
             </Grid>
-            <Grid Background="#D89E00" HorizontalAlignment="Left" Margin="20,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer3" Background="#D89E00" HorizontalAlignment="Center" Margin="-945,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Ellipse Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="80" Width="80"/>
                 <Label Name="lblAnswer3" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 3" Width="300" FontSize="28"/>
             </Grid>
-            <Grid Background="#26890C" HorizontalAlignment="Left" Margin="965,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer4" Background="#26890C" HorizontalAlignment="Center" Margin="949,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Stroke="White" StrokeThickness="5" Width="75" Height="75" Margin="20,21,0,21"/>
                 <Label Name="lblAnswer4" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 4" Width="300" FontSize="28"/>
             </Grid>
-            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,386,0,0" VerticalAlignment="Top" Width="80"/>
-            <Label Name="lblTimer" Width="70" Height="68" Foreground="#9D1ED2" FontSize="52" FontFamily="Segoe UI Bold" Content="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="25,383,0,0" VerticalAlignment="Top"/>
+            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="80" Margin="-1795,386,0,0" VerticalAlignment="Top" Width="80"/>
+            <Label Name="lblTimer" Width="70" Height="68" Foreground="#9D1ED2" FontSize="52" FontFamily="Segoe UI Bold" Content="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Margin="-1794,383,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Grid Visibility="Visible" Background="#9D1ED2" Name="gridTussenScherm">
-            <Grid Width="1920" Height="140" Margin="0,0,-6,911">
-                <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
+            <Grid HorizontalAlignment="Stretch" Height="140" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Border  BorderThickness="0 0 0 3" BorderBrush="#28000000">
                 </Border>
-                <Label Name="lblQuizTitel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Segoe UI Bold" Foreground="White" Content="De FruitQuiz" Margin="610,35,610,0" VerticalAlignment="Top" Width="700"/>
+                <Label Name="lblQuizTitel" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Segoe UI Bold" Foreground="White" Content="De FruitQuiz" Margin="0,35,0,0" VerticalAlignment="Top" Width="700"/>
             </Grid>
             <Ellipse HorizontalAlignment="Center" Stroke="White" StrokeThickness="10" Width="700" Margin="0,220,0,0" Height="700" VerticalAlignment="Top"/>
-            <Rectangle HorizontalAlignment="Left" Height="599" Margin="949,266,0,0" Stroke="White" StrokeThickness="10" VerticalAlignment="Top" Width="10" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Center" Margin="0,265,0,0" Height="600" Stroke="White" VerticalAlignment="Top" StrokeThickness="10" Width="10" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -66,27 +65,27 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <Label Name="lblQuestionNumber" Content="1" FontSize="220" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Margin="704,292,0,0" VerticalAlignment="Top" Width="252"/>
-            <Label Name="lblNumberOfQuestions" Content="" FontSize="220" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="940,511,0,0" VerticalAlignment="Top" Width="254"/>
+            <Label Name="lblQuestionNumber" Content="1" FontSize="220" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Right" HorizontalAlignment="Center" Margin="-300,292,0,0" VerticalAlignment="Top" Width="252"/>
+            <Label Name="lblNumberOfQuestions" Content="" FontSize="220" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Left" HorizontalAlignment="Center" Margin="300,511,0,0" VerticalAlignment="Top" Width="254"/>
         </Grid>
         <Grid Visibility="Collapsed" Background="#9D1ED2" Name="gridQuizVragenCheck">
-            <Grid Width="1920" Height="140" Margin="0,0,0,909">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="140" Margin="0,0,0,0">
                 <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
                 </Border>
-                <Label Name="lblVraagCheck" Content="De vraag" Width="300" Foreground="White" FontSize="50" FontFamily="Segoe UI Bold" HorizontalContentAlignment="Center" Margin="810,29,810,29"/>
+                <Label Name="lblVraagCheck" Content="De vraag" Height="80" Foreground="White" FontSize="50" FontFamily="Segoe UI Bold" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"/>
             </Grid>
-            <Grid Name="gridImageCheck" Background="#9D1ED2" Height="491" Margin="562,180,562,0" VerticalAlignment="Top">
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Center" Name="gridImageCheck" Background="#9D1ED2" Height="491" Margin="0,180,0,0" Width="790">
                 <Border Name="borderGridImageCheck" BorderThickness="3" BorderBrush="#28000000">
                     <Image Name="imgQuestionCheck"/>
                 </Border>
             </Grid>
-            <Grid Name="gridAnswer1Check" Background="#E21B3C" HorizontalAlignment="Left" Margin="20,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer1Check" Background="#E21B3C" Margin="-945,761,0,0" VerticalAlignment="Top" Height="122" HorizontalAlignment="Center" Width="934">
                 <Polygon Margin="20, 20, 0 , 0" Name="polygonTriangleCheck" Stroke="White" Fill="White" StrokeThickness="5">
                 </Polygon>
                 <Label Name="lblAnswer1Check" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 1" Width="300" FontSize="28"/>
 
             </Grid>
-            <Grid Name="gridAnswer2Check" Background="#1368CE" HorizontalAlignment="Left" Margin="965,761,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer2Check" Background="#1368CE" Margin="949,761,0,0" VerticalAlignment="Top" Height="122" HorizontalAlignment="Center" Width="936">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="60" Width="60" RenderTransformOrigin="0.5,0.5">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
@@ -99,26 +98,34 @@
                 </Rectangle>
                 <Label Name="lblAnswer2Check" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 2" Width="300" FontSize="28"/>
             </Grid>
-            <Grid Name="gridAnswer3Check" Background="#D89E00" HorizontalAlignment="Left" Margin="20,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer3Check" Background="#D89E00" HorizontalAlignment="Center" Margin="-945,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Ellipse Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="80" Width="80"/>
                 <Label Name="lblAnswer3Check" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 3" Width="300" FontSize="28"/>
             </Grid>
-            <Grid Name="gridAnswer4Check" Background="#26890C" HorizontalAlignment="Left" Margin="965,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
+            <Grid Name="gridAnswer4Check" Background="#26890C" HorizontalAlignment="Center" Margin="949,898,0,0" VerticalAlignment="Top" Width="935" Height="122">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Stroke="White" StrokeThickness="5" Width="75" Height="75" Margin="20,21,0,21"/>
                 <Label Name="lblAnswer4Check" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" Foreground="White" FontFamily="Segoe UI SemiBold" Content="Antwoord 4" Width="300" FontSize="28"/>
             </Grid>
-            <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="80" Margin="20,386,0,0" VerticalAlignment="Top" Width="80"/>
-            <Label Name="lblTimerCheck" Width="70" Height="68" Foreground="#9D1ED2" FontSize="52" FontFamily="Segoe UI Bold" Content="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="25,383,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Grid Visibility="Collapsed" Background="#9D1ED2" Name="gridTussenSchermCheck">
-            <Grid Width="1920" Height="140" Margin="0,0,-6,911">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="140" Margin="0,0,0,0">
                 <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
                 </Border>
                 <Label Name="lblQuizTitelCheck" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Segoe UI Bold" Foreground="White" Content="De FruitQuiz" Margin="610,35,610,0" VerticalAlignment="Top" Width="700"/>
             </Grid>
-            <Ellipse HorizontalAlignment="Center" Stroke="White" StrokeThickness="10" Width="700" Margin="607,220,607,131"/>
+            <Ellipse HorizontalAlignment="Center" Stroke="White" StrokeThickness="10" Width="700" Margin="0,220,0,0" Height="700" VerticalAlignment="Top"/>
 
-            <Label Name="lblNakijkenCheck" Content="Nakijken" FontSize="150" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="638,0,638,380" VerticalAlignment="Bottom" Width="638"/>
+            <Label Name="lblNakijkenCheck" Content="Nakijken" FontSize="150" FontFamily="Segoe UI Bold" Foreground="White" VerticalAlignment="Top" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,461,0,0" Width="638" Height="210"/>
+        </Grid>
+        <Grid Visibility="Collapsed" Background="#9D1ED2" Name="gridTussenSchermEnd">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="140" Margin="0,0,0,0">
+                <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
+                </Border>
+                <Label Name="lblQuizTitelEnd" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="70" FontFamily="Segoe UI Bold" Foreground="White" Content="De FruitQuiz" Margin="0,35,0,0" VerticalAlignment="Top" Width="700"/>
+            </Grid>
+            <Ellipse HorizontalAlignment="Center" VerticalAlignment="Top" Stroke="White" StrokeThickness="10" Width="700" Height="700" Margin="0,220,0,0"/>
+
+            <Label Name="lblNakijkenEnd" Content="Einde" FontSize="150" FontFamily="Segoe UI Bold" Foreground="White" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,460,0,0" Width="638"/>
         </Grid>
     </Grid>
 </Window>

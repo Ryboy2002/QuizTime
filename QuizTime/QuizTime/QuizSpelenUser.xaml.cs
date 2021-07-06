@@ -29,6 +29,7 @@ namespace QuizTime
             polygonColl.Add(new Point(40, 10));
             polygonColl.Add(new Point(80, 80));
             polygonTriangle.Points = polygonColl;
+            polygonTriangleCheck.Points = polygonColl;
         }
 
         public void StartGame(string titel, string numberOfQuestions)
@@ -61,6 +62,41 @@ namespace QuizTime
             lblAnswer4.Content = answer4;
             lblVraag.Content = question;
 
+            if (lblAnswer3.Content == "" && lblAnswer4.Content == "")
+            {
+                gridAnswer3.Visibility = Visibility.Collapsed;
+                gridAnswer4.Visibility = Visibility.Collapsed;
+                gridAnswer1.Margin = new Thickness(0, 761, 0, 0);
+                gridAnswer2.Margin = new Thickness(0, 898, 0, 0);
+                gridAnswer1.Width = 1882;
+                gridAnswer2.Width = 1882;
+                
+            } else if (lblAnswer4.Content == "")
+            {
+                gridAnswer4.Visibility = Visibility.Collapsed;
+                gridAnswer3.Visibility = Visibility.Visible;
+                gridAnswer3.Margin = new Thickness(0, 898, 0, 0);
+                gridAnswer1.Margin = new Thickness(-945, 761, 0, 0);
+                gridAnswer2.Margin = new Thickness(949, 761, 0, 0);
+                gridAnswer3.Width = 1882;
+                gridAnswer1.Width = 935;
+                gridAnswer2.Width = 935;
+            } else
+            {
+                gridAnswer1.Visibility = Visibility.Visible;
+                gridAnswer2.Visibility = Visibility.Visible;
+                gridAnswer3.Visibility = Visibility.Visible;
+                gridAnswer4.Visibility = Visibility.Visible;
+                gridAnswer1.Margin = new Thickness(-945, 761, 0, 0);
+                gridAnswer2.Margin = new Thickness(949, 761, 0, 0);
+                gridAnswer3.Margin = new Thickness(-945, 898, 0, 0);
+                gridAnswer4.Margin = new Thickness(949, 898, 0, 0);
+                gridAnswer1.Width = 935;
+                gridAnswer2.Width = 935;
+                gridAnswer3.Width = 935;
+                gridAnswer4.Width = 935;
+            }
+
             if (image != null)
             {
                 baseDir = baseDir.Replace(@"bin\Debug\Images", "");
@@ -80,17 +116,61 @@ namespace QuizTime
 
         public void NextQuestionAnswer(string answer1, string answer2, string answer3, string answer4, string question, int getal, string image)
         {
-           
+            gridQuizVragen.Visibility = Visibility.Collapsed;
+            gridQuizVragenCheck.Visibility = Visibility.Visible;
+            gridTussenScherm.Visibility = Visibility.Collapsed;
+            gridTussenSchermCheck.Visibility = Visibility.Collapsed;
             lblAnswer1Check.Content = answer1;
             lblAnswer2Check.Content = answer2;
             lblAnswer3Check.Content = answer3;
             lblAnswer4Check.Content = answer4;
             lblVraagCheck.Content = question;
 
+            gridAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#E21B3C");
+            gridAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#1368CE");
+            gridAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D89E00");
+            gridAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#26890C");
             lblAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#E21B3C");
             lblAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#1368CE");
             lblAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#D89E00");
             lblAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#26890C");
+
+            if (lblAnswer3Check.Content == "" && lblAnswer4.Content == "")
+            {
+                gridAnswer3Check.Visibility = Visibility.Collapsed;
+                gridAnswer4Check.Visibility = Visibility.Collapsed;
+                gridAnswer1Check.Margin = new Thickness(0, 761, 0, 0);
+                gridAnswer2Check.Margin = new Thickness(0, 898, 0, 0);
+                gridAnswer1Check.Width = 1882;
+                gridAnswer2Check.Width = 1882;
+
+            }
+            else if (lblAnswer4Check.Content == "")
+            {
+                gridAnswer4Check.Visibility = Visibility.Collapsed;
+                gridAnswer3Check.Visibility = Visibility.Visible;
+                gridAnswer3Check.Margin = new Thickness(0, 898, 0, 0);
+                gridAnswer1Check.Margin = new Thickness(-945, 761, 0, 0);
+                gridAnswer2Check.Margin = new Thickness(949, 761, 0, 0);
+                gridAnswer3Check.Width = 1882;
+                gridAnswer1Check.Width = 935;
+                gridAnswer2Check.Width = 935;
+            }
+            else
+            {
+                gridAnswer1Check.Visibility = Visibility.Visible;
+                gridAnswer2Check.Visibility = Visibility.Visible;
+                gridAnswer3Check.Visibility = Visibility.Visible;
+                gridAnswer4Check.Visibility = Visibility.Visible;
+                gridAnswer1Check.Margin = new Thickness(-945, 761, 0, 0);
+                gridAnswer2Check.Margin = new Thickness(949, 761, 0, 0);
+                gridAnswer3Check.Margin = new Thickness(-945, 898, 0, 0);
+                gridAnswer4Check.Margin = new Thickness(949, 898, 0, 0);
+                gridAnswer1Check.Width = 935;
+                gridAnswer2Check.Width = 935;
+                gridAnswer3Check.Width = 935;
+                gridAnswer4Check.Width = 935;
+            }
 
             if (image != null)
             {
@@ -118,21 +198,33 @@ namespace QuizTime
                     gridAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     break;
                 case 2:
                     gridAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     break;
                 case 3:
                     gridAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer4Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     break;
                 case 4:
                     gridAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     gridAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer1Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer2Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
+                    lblAnswer3Check.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#707070");
                     break;
             }
         }

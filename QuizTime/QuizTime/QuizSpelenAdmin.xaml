@@ -6,8 +6,22 @@
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
         Title="QuizSpelenAdmin" Height="1080" Width="1920" ResizeMode="NoResize">
-    <Grid>
-        <Button x:Name="btnContinue" Content="Continue" Foreground="White" Background="#9D1ED2" FontSize="50" FontFamily="Segoe UI Bold" HorizontalAlignment="Left" Margin="698,320,0,0" VerticalAlignment="Top" Width="491" Height="380"/>
+    <Grid Background="#D69D1ED2">
+        <Button x:Name="btnContinue" Content="Continue" Foreground="White" Background="#9D1ED2" FontSize="50" FontFamily="Segoe UI Bold" HorizontalAlignment="Center" Margin="0,600,0,0" VerticalAlignment="Top" Width="491" Height="380"/>
+        <Label HorizontalContentAlignment="Right" Content="Volgende vraag:" HorizontalAlignment="Center" Margin="-1500,81,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="330"/>
+        <Label HorizontalContentAlignment="Right" Content="Antwoord rood:" HorizontalAlignment="Center" Margin="-1500,152,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="330"/>
+        <Label HorizontalContentAlignment="Right" Content="Antwoord blauw:" HorizontalAlignment="Center" Margin="-1520,222,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="350"/>
+        <Label HorizontalContentAlignment="Right" Content="Antwoord geel:" HorizontalAlignment="Center" Margin="-1500,292,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="330"/>
+        <Label HorizontalContentAlignment="Right" Content="Antwoord groen:" HorizontalAlignment="Center" Margin="-1500,358,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="330"/>
+        <Label HorizontalContentAlignment="Right" Content="Juist antwoord:" HorizontalAlignment="Center" Margin="-1500,428,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="330"/>
+        <Label HorizontalContentAlignment="Right" Content="Timer:" HorizontalAlignment="Center" Margin="-1500,488,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="330"/>
+        <Label Name="lblVolgendeVraag" Content="" HorizontalAlignment="Center" Margin="350,81,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="1500"/>
+        <Label Name="lblVolgendeA1" Content="" HorizontalAlignment="Center" Margin="350,152,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="1500"/>
+        <Label Name="lblVolgendeA2" Content="" HorizontalAlignment="Center" Margin="350,223,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="1500"/>
+        <Label Name="lblVolgendeA3"  Content="" HorizontalAlignment="Center" Margin="350,292,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="66" Width="1500"/>
+        <Label Name="lblVolgendeA4" Content="" HorizontalAlignment="Center" Margin="350,358,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="1500"/>
+        <Label Name="lblVolgendeRA" Content="" HorizontalAlignment="Center" Margin="350,428,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="1500"/>
+        <Label x:Name="lblVolgendeTimer" Content="" HorizontalAlignment="Center" Margin="350,488,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Segoe UI Bold" Height="64" Width="1500"/>
 
     </Grid>
 </Window>

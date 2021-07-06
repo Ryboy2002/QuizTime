@@ -5,50 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None">
+        Title="QuizMaken" Height="1080" Width="1920" ResizeMode="NoResize">
     <Grid Background="#9D1ED2">
         <Grid Background="#9D1ED2" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="1920" Margin="-4,0">
-            <Border BorderThickness="0 0 0 8" BorderBrush="#28000000">
+            <Border BorderThickness="0 0 0 5" BorderBrush="#28000000">
             </Border>
             <Label Content="Quiz Maken" Margin="0,0,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontFamily="Segoe UI Black" Foreground="White"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#E21B3C" Margin="170,196,1350,484">
-            <Button Name="btnMaken1" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Background="#E21B3C" Margin="0,166,1174,0" Height="400" Width="400" VerticalAlignment="Top">
+            <Button Name="btnMaken1" Background="#26890C" Content="Maken" Margin="0,0,0,45" Height="53" Width="244" FontSize="35" VerticalAlignment="Bottom" Foreground="White"/>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel1" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>
         </Grid>
-        <Grid Height="400" Width="400" Background="#1368CE" Margin="756,180,756,469">
-            <Button Name="btnMaken2" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Height="400" Width="400" Background="#1368CE" VerticalAlignment="Top" Margin="0,166,0,0">
+            <Button Name="btnMaken2" Background="#26890C" Content="Maken" Margin="0,0,0,45" Height="53" Width="244" VerticalAlignment="Bottom" FontSize="35" Foreground="White"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel2" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#D89E00" Margin="1332,180,180,469">
-            <Button Name="btnMaken3" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Height="400" Width="400" Background="#D89E00" VerticalAlignment="Top" Margin="0,166,-1174,0">
+            <Button Name="btnMaken3" Background="#26890C" Content="Maken" Margin="0,0,0,45" Height="53" Width="244" VerticalAlignment="Bottom" FontSize="35" Foreground="White"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel3" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#1368CE" Margin="166,620,1346,29">
-            <Button Name="btnMaken4" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Height="400" Width="400" Background="#1368CE" VerticalAlignment="Top" Margin="0,596,1174,0">
+            <Button Name="btnMaken4" Background="#26890C" Content="Maken" Margin="0,0,0,45" VerticalAlignment="Bottom" Height="53" Width="244" FontSize="35" Foreground="White"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel4" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#D89E00" Margin="756,620,756,29">
-            <Button Name="btnMaken5" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Height="400" Width="400" Background="#D89E00" VerticalAlignment="Top" Margin="0,596,0,0">
+            <Button Name="btnMaken5" Background="#26890C" Content="Maken" Margin="0,0,0,45" Height="53" Width="244" VerticalAlignment="Bottom" FontSize="35" Foreground="White"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel5" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>
             <Label Width="100" Content="Quiz" Margin="150,20,150,0" VerticalAlignment="Top" Foreground="White" FontSize="45"/>
         </Grid>
-        <Grid Height="400" Width="400" Background="#E21B3C" Margin="1332,620,180,29">
-            <Button Name="btnMaken6" Background="#26890C" Content="Maken" Margin="78,302,78,45" FontSize="35" Foreground="White"/>
+        <Grid Height="400" Width="400" Background="#E21B3C" VerticalAlignment="Top" Margin="0,596,-1174,0">
+            <Button Name="btnMaken6" Background="#26890C" Content="Maken" Margin="0,0,0,45" Height="53" Width="244" FontSize="35" VerticalAlignment="Bottom" Foreground="White"/>
             <Border BorderBrush="{x:Null}" Height="200" Width="300" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Name="txbQuizTitel6" FontSize="40" FontFamily="Segoe UI Black" Foreground="White" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text=""/>
             </Border>

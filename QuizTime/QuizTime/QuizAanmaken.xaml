@@ -5,40 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizTime"
         mc:Ignorable="d"
-        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None">
+        Title="QuizAanmaken" Height="1080" Width="1920" ResizeMode="NoResize">
     <Grid Background="#23000000">
-        <Grid Background="White" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="1912">
+        <Grid Background="White" Height="90" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <Border BorderThickness="0 0 0 3" BorderBrush="#28000000">
             </Border>
             <TextBox Name="txbQuizTitel" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="Vul de quiz titel in..." Width="308" Margin="218,17,0,17" Foreground="#FFBFBFBF" FontSize="27"/>
-            <Button Name="btnQuit" Foreground="White" Background="#E21B3C" Content="Stoppen" Width="97" Height="56" Margin="1692,17,123,17" FontSize="23" FontFamily="Segoe UI Semibold"/>
-            <Button Name="btnSave" Foreground="White"  Background="#26890C" Content="Klaar" Width="97" Height="56"  Margin="1805,17,10,17" FontSize="23" FontFamily="Segoe UI Semibold"/>
+            <Button Name="btnQuit" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="White" Background="#E21B3C" Content="Stoppen" Width="97" Height="56" Margin="0,17,120,0" FontSize="23" FontFamily="Segoe UI Semibold"/>
+            <Button Name="btnSave" VerticalAlignment="Top" HorizontalAlignment="Right" Foreground="White"  Background="#26890C" Content="Klaar" Width="97" Height="56"  Margin="0,17,10,0" FontSize="23" FontFamily="Segoe UI Semibold"/>
         </Grid>
         <Grid Background="White" HorizontalAlignment="Left" Height="960" Margin="0,89,0,0" VerticalAlignment="Top" Width="220">
             <Border BorderThickness="0 0 3 0" BorderBrush="#28000000">
             </Border>
-            <Button Name="btnVolgende" Content="Volgende" Margin="45,129,45,791" Background="#FF1368CE" Foreground="White" FontSize="24"/>
-            <Button Name="btnVorige" Content="Vorige" Margin="45,84,45,836" Background="#FF1368CE" Foreground="White" FontSize="24"/>
+            <Button Name="btnVorige" Content="Vorige" Margin="45,129,45,791" Background="#FF1368CE" Foreground="White" FontSize="24"/>
+            <Button Name="btnVolgende" Content="Volgende" Margin="45,84,45,836" Background="#FF1368CE" Foreground="White" FontSize="24"/>
             <Label Name="lblQuestionNumber" Content="Vraag 1" Margin="50,25,10,881" RenderTransformOrigin="0.5,0.356" FontSize="30" FontFamily="Segoe UI Semibold" Foreground="#E5303030"/>
+            <Button x:Name="btnVraagVerwijderen" Content="Verwijder" Margin="45,174,45,746" Background="#FF1368CE" Foreground="White" FontSize="24"/>
         </Grid>
-        <Grid Background="White" HorizontalAlignment="Left" Height="959" Margin="1692,90,0,0" VerticalAlignment="Top" Width="220">
+        <Grid HorizontalAlignment="Right" Background="White" Height="959" Margin="0,90,0,0" VerticalAlignment="Top" Width="220">
             <Border BorderThickness="3 0 0 0" BorderBrush="#28000000">
             </Border>
             <TextBox Name="txbTimer" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="30" Margin="30,68,61,851" FontSize="22" Foreground="#B0303030"/>
             <Label Width="129" Height="43" Content="Tijd limiet" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,25,0,0" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="#E5303030"/>
             <Label Width="59" Height="40" Content="sec" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="161,68,0,0" FontFamily="Segoe UI Semibold" FontSize="22" Foreground="#E5303030"/>
         </Grid>
-        <Grid Background="White" Height="120" Margin="260,140,260,0" VerticalAlignment="Top">
-            <TextBox BorderThickness="0" Name="txbQuizVraag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="44" Margin="303,40,303,36" TextWrapping="Wrap" Text="Vul de vraag in" Width="786" BorderBrush="{x:Null}" FontSize="30" FontFamily="Segoe UI Semilight" Foreground="#CC303030"/>
+        <Grid Background="White" HorizontalAlignment="Center" Width="1400" Height="120" Margin="0,105,0,0" VerticalAlignment="Top">
+            <TextBox BorderThickness="0" Name="txbQuizVraag" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="44" Margin="0" TextWrapping="Wrap" Text="Vul de vraag in" Width="1350" BorderBrush="{x:Null}" FontSize="30" FontFamily="Segoe UI Semilight" Foreground="#CC303030"/>
         </Grid>
-        <Grid Name="gridImage" Background="#B2FFFFFF" Height="491" Margin="562,290,562,0" VerticalAlignment="Top">
+        <Grid Name="gridImage" HorizontalAlignment="Center" Background="#B2FFFFFF" Height="491" Margin="0,250,0,0" VerticalAlignment="Top">
             <Border Name="borderGridImage" BorderThickness="3" BorderBrush="#28000000">
                 <Image Name="imgQuestion"/>
             </Border>
             <Button Width="175" Name="btnVerwijderImage" Height="51" Content="Verwijder foto" FontSize="18" FontFamily="Segoe UI Semibold" Margin="406,420,215,20" BorderBrush="#28000000"/>
             <Button Width="175" Name="btnImage" VerticalAlignment="Center" Height="51" Content="Voeg albeelding toe" Margin="215,420,407,20" FontSize="18" FontFamily="Segoe UI Semibold" BorderBrush="#28000000"/>
         </Grid>
-        <Grid Background="#E21B3C" Width="710" Height="122" HorizontalAlignment="Left" Margin="240,786,0,0" VerticalAlignment="Top">
+        <Grid Background="#E21B3C" Width="710" Height="122" HorizontalAlignment="Center" Margin="-722,746,0,0" VerticalAlignment="Top">
             <Polygon Margin="20, 20, 0 , 0" Name="polygonTriangle" Stroke="White" Fill="White" StrokeThickness="5">
             </Polygon>
             <CheckBox Name="cboxCorrectAnswer1"  Content="" HorizontalAlignment="Left" Margin="614,25,0,0" VerticalAlignment="Top" BorderBrush="White" Background="#FFE21B3C" Width="16">
@@ -46,19 +47,19 @@
                     <ScaleTransform ScaleX="5" ScaleY="5"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            <TextBox Name="txbAnswer1" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
+            <TextBox Name="txbAnswer1" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="450" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
 
         </Grid>
-        <Grid Background="#D89E00" Width="710" Height="122"  HorizontalAlignment="Left" Margin="240,917,0,0" VerticalAlignment="Top">
+        <Grid Background="#D89E00" Width="710" Height="122"  HorizontalAlignment="Center" Margin="-722,877,0,0" VerticalAlignment="Top">
             <Ellipse Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="80" Width="80"/>
             <CheckBox Name="cboxCorrectAnswer3" Content="" HorizontalAlignment="Left" Margin="614,25,0,0" VerticalAlignment="Top" BorderBrush="White" Background="#FFD89E00" Width="16">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="5" ScaleY="5"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            <TextBox Name="txbAnswer3" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
+            <TextBox Name="txbAnswer3" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="450" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
         </Grid>
-        <Grid Background="#1368CE" Height="122" Margin="963,786,240,0" VerticalAlignment="Top">
+        <Grid Background="#1368CE" Width="710" Height="122" Margin="722,746,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Rectangle Fill="White" HorizontalAlignment="Left" Margin="20,11,0,11" Stroke="White" StrokeThickness="5" Height="60" Width="60" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
@@ -74,16 +75,16 @@
                     <ScaleTransform ScaleX="5" ScaleY="5"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            <TextBox Name="txbAnswer2" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
+            <TextBox Name="txbAnswer2" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="450" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
         </Grid>
-        <Grid Background="#26890C" Height="122" Margin="963,917,240,0" VerticalAlignment="Top">
+        <Grid Background="#26890C" Width="710" Height="122" Margin="722,877,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Rectangle Fill="White" HorizontalAlignment="Left" Stroke="White" StrokeThickness="5" Width="75" Height="75" Margin="20,21,0,21"/>
             <CheckBox  Name="cboxCorrectAnswer4" Content="" HorizontalAlignment="Left" Margin="614,25,0,0" VerticalAlignment="Top" BorderBrush="White" Background="#FF26890C" Width="16">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="5" ScaleY="5"/>
                 </CheckBox.LayoutTransform>
             </CheckBox>
-            <TextBox Name="txbAnswer4" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="300" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
+            <TextBox Name="txbAnswer4" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,38,0,38" TextWrapping="Wrap" Text="Vul antwoord in" Width="450" FontSize="22" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="White" Background="{x:Null}"/>
         </Grid>
 
     </Grid>

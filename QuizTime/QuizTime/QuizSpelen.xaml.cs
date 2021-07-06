@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -24,7 +25,6 @@ namespace QuizTime
         private int choosenQuiz = 0;
         private List<string> listID = new List<string>();
         private List<string> listTitel = new List<string>();
-        private List<List<SaveQuestions>> questions = new List<List<SaveQuestions>>();
         public QuizSpelen()
         {
             InitializeComponent();
@@ -35,41 +35,7 @@ namespace QuizTime
             btnMaken5.Click += BtnMaken_Click;
             btnMaken6.Click += BtnMaken_Click;
 
-            /* MySqlDataReader quizVragen = db.SelectQuizVragen("1");
-
-             while (quizVragen.Read())
-             {
-                 string neegeenJson = quizVragen[0].ToString();
-                 JArray data = JArray.Parse(neegeenJson);
-                 foreach (JArray obj in data)
-                 {
-                     foreach (JObject ob in obj)
-                     {
-                         List<SaveQuestions> question = new List<SaveQuestions>
-             {
-                         new SaveQuestions
-                         {
-                             question = ob["question"].ToString(),
-                             answer1 = ob["answer1"].ToString(),
-                             answer2 = ob["answer2"].ToString(),
-                             answer3 = ob["answer3"].ToString(),
-                             answer4 = ob["answer4"].ToString(),
-                             rightAnswer = Convert.ToInt32(ob["rightanswer"]),
-                             image = ob["image"].ToString(),
-                             timer = Convert.ToInt32(ob["timer"])
-                         },
-                     };
-                         questions.Add(question);
-                     }
-                 }
-             }*/
-
-            btnMaken1.Height = 53;
-            btnMaken2.Height = 53;
-            btnMaken3.Height = 53;
-            btnMaken4.Height = 53;
-            btnMaken5.Height = 53;
-            btnMaken6.Height = 53;
+            MaximizeToSecondaryMonitor();
 
             MySqlDataReader quizID = db.SelectQuizID();
             while (quizID.Read())
@@ -88,39 +54,39 @@ namespace QuizTime
             switch (listID.Count)
             {
                 case 1:
-                    btnMaken1.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     break;
                 case 2:
-                    btnMaken1.Content = "Quiz maken";
-                    btnMaken2.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
+                    btnMaken2.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     break;
                 case 3:
-                    btnMaken1.Content = "Quiz maken";
-                    btnMaken2.Content = "Quiz maken";
-                    btnMaken3.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
+                    btnMaken2.Content = "Quiz spelen";
+                    btnMaken3.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
                     break;
                 case 4:
-                    btnMaken1.Content = "Quiz maken";
-                    btnMaken2.Content = "Quiz maken";
-                    btnMaken3.Content = "Quiz maken";
-                    btnMaken4.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
+                    btnMaken2.Content = "Quiz spelen";
+                    btnMaken3.Content = "Quiz spelen";
+                    btnMaken4.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
                     txbQuizTitel4.Text = listTitel[3];
                     break;
                 case 5:
-                    btnMaken1.Content = "Quiz maken";
-                    btnMaken2.Content = "Quiz maken";
-                    btnMaken3.Content = "Quiz maken";
-                    btnMaken4.Content = "Quiz maken";
-                    btnMaken5.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
+                    btnMaken2.Content = "Quiz spelen";
+                    btnMaken3.Content = "Quiz spelen";
+                    btnMaken4.Content = "Quiz spelen";
+                    btnMaken5.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
@@ -128,12 +94,12 @@ namespace QuizTime
                     txbQuizTitel5.Text = listTitel[4];
                     break;
                 case 6:
-                    btnMaken1.Content = "Quiz maken";
-                    btnMaken2.Content = "Quiz maken";
-                    btnMaken3.Content = "Quiz maken";
-                    btnMaken4.Content = "Quiz maken";
-                    btnMaken5.Content = "Quiz maken";
-                    btnMaken6.Content = "Quiz maken";
+                    btnMaken1.Content = "Quiz spelen";
+                    btnMaken2.Content = "Quiz spelen";
+                    btnMaken3.Content = "Quiz spelen";
+                    btnMaken4.Content = "Quiz spelen";
+                    btnMaken5.Content = "Quiz spelen";
+                    btnMaken6.Content = "Quiz spelen";
                     txbQuizTitel1.Text = listTitel[0];
                     txbQuizTitel2.Text = listTitel[1];
                     txbQuizTitel3.Text = listTitel[2];
@@ -147,7 +113,7 @@ namespace QuizTime
 
         private void BtnMaken_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button;
+            System.Windows.Controls.Button clickedButton = sender as System.Windows.Controls.Button;
 
             if (clickedButton == null)
                 return;
@@ -179,10 +145,8 @@ namespace QuizTime
 
             if (choosenQuiz > 0)
             {
-                QuizSpelenAdmin QuizSpelenAdmin = new QuizSpelenAdmin(choosenQuiz);
+                QuizSpelenAdmin QuizSpelenAdmin = new QuizSpelenAdmin(choosenQuiz, "Spelen");
                 QuizSpelenAdmin.Show();
-              /*  QuizBewerken QuizBewerken = new QuizBewerken(choosenQuiz);
-                QuizBewerken.Show();*/
                 this.Close();
             }
             else
@@ -190,6 +154,25 @@ namespace QuizTime
                 QuizAanmaken QuizAanmaken = new QuizAanmaken();
                 QuizAanmaken.Show();
                 this.Close();
+            }
+        }
+
+        public void MaximizeToSecondaryMonitor()
+        {
+            var secondaryScreen = Screen.AllScreens.Where(s => !s.Primary).FirstOrDefault();
+
+            if (secondaryScreen != null)
+            {
+                var workingArea = secondaryScreen.WorkingArea;
+                this.Left = workingArea.Left;
+                this.Top = workingArea.Top;
+                this.Width = workingArea.Width;
+                this.Height = workingArea.Height;
+
+                if (this.IsLoaded)
+                {
+                    this.WindowState = WindowState.Maximized;
+                }
             }
         }
     }

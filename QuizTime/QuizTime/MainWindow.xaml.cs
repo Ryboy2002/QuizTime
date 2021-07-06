@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -26,18 +27,16 @@ namespace QuizTime
         public MainWindow()
         {
             InitializeComponent();
-            /* btnGegevens.Click += BtnGegevens_Click;*/
             btnQuizBekijken.Click += BtnQuizBekijken_Click;
             btnQuizNakijken.Click += BtnQuizNakijken_Click;
             btnQuizSpelen.Click += BtnQuizSpelen_Click;
+            MaximizeToSecondaryMonitor();
         }
 
         private void BtnQuizSpelen_Click(object sender, RoutedEventArgs e)
         {
             QuizSpelen QuizSpelen = new QuizSpelen();
             QuizSpelen.Show();
-            /*test test = new test();
-            test.Show();*/
         }
 
         private void BtnQuizNakijken_Click(object sender, RoutedEventArgs e)
@@ -52,16 +51,23 @@ namespace QuizTime
             QuizMaken.Show();
         }
 
-        /*private void BtnGegevens_Click(object sender, RoutedEventArgs e)
+        public void MaximizeToSecondaryMonitor()
         {
-            MySqlDataReader gegevens = database.SelectQuiz();
-            while (gegevens.Read())
+            var secondaryScreen = Screen.AllScreens.Where(s => !s.Primary).FirstOrDefault();
+
+            if (secondaryScreen != null)
             {
-                MessageBox.Show(gegevens[0].ToString());
-                txblockGegevens.Text = gegevens[0].ToString();
+                var workingArea = secondaryScreen.WorkingArea;
+                this.Left = workingArea.Left;
+                this.Top = workingArea.Top;
+                this.Width = workingArea.Width;
+                this.Height = workingArea.Height;
+
+                if (this.IsLoaded)
+                {
+                    this.WindowState = WindowState.Maximized;
+                }
             }
-        }*/
-
-
+        }
     }
 }

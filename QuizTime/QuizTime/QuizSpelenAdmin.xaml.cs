@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 using MySql.Data.MySqlClient;
 using System.Windows.Threading;
+using System.Media;
 
 namespace QuizTime
 {
@@ -34,7 +35,11 @@ namespace QuizTime
         public int questionNumber = 1;
         private DispatcherTimer timer = new DispatcherTimer();
         public int getalTimer;
-        public QuizSpelenAdmin(int choosenQuiz)
+        public int timerSound;
+        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        private SoundPlayer _TimerTick;
+        private SoundPlayer _StartEndSound;
+        public QuizSpelenAdmin(int choosenQuiz, string choosenMode)
         {
             InitializeComponent();
             btnContinue.Click += BtnContinue_Click;
@@ -46,7 +51,15 @@ namespace QuizTime
             timer.Tick += Timer_Tick;
            
             MaximizeToSecondaryMonitor();
-            quizState.gamestate = quizState.GAMESTATE.GAME_START;
+
+            if (choosenMode == "Spelen")
+            {
+                quizState.gamestate = quizState.GAMESTATE.GAME_START;
+            } else if (choosenMode == "Nakijken")
+            {
+                quizState.gamestate = quizState.GAMESTATE.CHECK_START;
+            }
+           
            
 
             MySqlDataReader quizVragen = db.SelectQuizVragen($"{quizID}");
@@ -85,7 +98,7 @@ namespace QuizTime
                 }
             }
 
-            for (int i = 0; i < listQuestions.Count; i++) // Loop through List with for
+            for (int i = 0; i < listQuestions.Count; i++)
             {
                 if (listQuestions[i][0].image == "")
                 {
@@ -97,21 +110,98 @@ namespace QuizTime
             {
                 QuizSpelenUser.UpdateTimer(listQuestions[0][0].timer);
                 QuizSpelenUser.StartGame(listTitel[0], listQuestions.Count.ToString());
+                baseDir = baseDir.Replace(@"bin\Debug\Sounds", "");
+                _StartEndSound = new SoundPlayer(baseDir + @"Sounds/Start-End.wav");
+                _StartEndSound.Play();
+                lblVolgendeVraag.Content = listQuestions[_listNumber][0].question;
+                lblVolgendeA1.Content = listQuestions[_listNumber][0].answer1;
+                lblVolgendeA2.Content = listQuestions[_listNumber][0].answer2;
+                lblVolgendeA3.Content = listQuestions[_listNumber][0].answer3;
+                lblVolgendeA4.Content = listQuestions[_listNumber][0].answer4;
+                lblVolgendeTimer.Content = listQuestions[_listNumber][0].timer.ToString();
+
+                switch (listQuestions[_listNumber][0].rightAnswer)
+                {
+                    case 1:
+                        lblVolgendeRA.Content = listQuestions[_listNumber][0].answer1;
+                        break;
+                    case 2:
+                        lblVolgendeRA.Content = listQuestions[_listNumber][0].answer2;
+                        break;
+                    case 3:
+                        lblVolgendeRA.Content = listQuestions[_listNumber][0].answer3;
+                        break;
+                    case 4:
+                        lblVolgendeRA.Content = listQuestions[_listNumber][0].answer4;
+                        break;
+                }
+            } else if (quizState.gamestate == quizState.GAMESTATE.CHECK_START)
+            {
+                QuizSpelenUser.StartCheck(listTitel[0]);
+                _listNumber = 0;
+                questionNumber = 1;
+                quizState.gamestate = quizState.GAMESTATE.SHOW_CHECK_QUESTIONS;
+                if (listQuestions.Count > _listNumber)
+                {
+                    lblVolgendeVraag.Content = listQuestions[_listNumber + 1][0].question;
+                    lblVolgendeA1.Content = listQuestions[_listNumber + 1][0].answer1;
+                    lblVolgendeA2.Content = listQuestions[_listNumber + 1][0].answer2;
+                    lblVolgendeA3.Content = listQuestions[_listNumber + 1][0].answer3;
+                    lblVolgendeA4.Content = listQuestions[_listNumber + 1][0].answer4;
+                    lblVolgendeTimer.Content = listQuestions[_listNumber + 1][0].timer.ToString();
+
+                    switch (listQuestions[_listNumber + 1][0].rightAnswer)
+                    {
+                        case 1:
+                            lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer1;
+                            break;
+                        case 2:
+                            lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer2;
+                            break;
+                        case 3:
+                            lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer3;
+                            break;
+                        case 4:
+                            lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer4;
+                            break;
+                    }
+                }
+                else
+                {
+                    lblVolgendeVraag.Content = "Geen volgende vraag meer";
+                    lblVolgendeA1.Content = "Geen volgende vraag meer";
+                    lblVolgendeA2.Content = "Geen volgende vraag meer";
+                    lblVolgendeA3.Content = "Geen volgende vraag meer";
+                    lblVolgendeA4.Content = "Geen volgende vraag meer";
+                    lblVolgendeRA.Content = "Geen volgende vraag meer";
+                    lblVolgendeTimer.Content = "Geen volgende vraag meer";
+                }
             }
             QuizSpelenUser.Show();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
             getalTimer--;
+            if (getalTimer == timerSound)
+            {
+                baseDir = baseDir.Replace(@"bin\Debug\Sounds", "");
+                _TimerTick = new SoundPlayer(baseDir + @"Sounds/timer-tick.wav");
+                _TimerTick.Play();
+            }
+                
             if (getalTimer == 0)
             {
                 timer.Stop();
+                _TimerTick.Stop();
                 if (questionNumber > listQuestions.Count)
                 {
                     QuizSpelenUser.StartCheck(listTitel[0]);
                     _listNumber = 0;
                     questionNumber = 1;
                     quizState.gamestate = quizState.GAMESTATE.SHOW_CHECK_QUESTIONS;
+                    baseDir = baseDir.Replace(@"bin\Debug\Sounds", "");
+                    _TimerTick = new SoundPlayer(baseDir + @"Sounds/Start-End.wav");
+                    _TimerTick.Play();
                 } else
                 {
                     QuizSpelenUser.NextDivider(questionNumber.ToString());
@@ -131,15 +221,38 @@ namespace QuizTime
                     case quizState.GAMESTATE.GAME_START:
                         quizState.gamestate = quizState.GAMESTATE.SHOW_NEXT_QUESTION;
                         getalTimer = listQuestions[_listNumber][0].timer;
+                        timerSound = 5;
                         QuizSpelenUser.NextQuestion(listQuestions[_listNumber][0].answer1, listQuestions[_listNumber][0].answer2, listQuestions[_listNumber][0].answer3, listQuestions[_listNumber][0].answer4, listQuestions[_listNumber][0].question, getalTimer, listQuestions[_listNumber][0].image);
                         timer.Start();
                         _listNumber++;
                         questionNumber++;
+                        lblVolgendeVraag.Content = listQuestions[_listNumber][0].question;
+                        lblVolgendeA1.Content = listQuestions[_listNumber][0].answer1;
+                        lblVolgendeA2.Content = listQuestions[_listNumber][0].answer2;
+                        lblVolgendeA3.Content = listQuestions[_listNumber][0].answer3;
+                        lblVolgendeA4.Content = listQuestions[_listNumber][0].answer4;
+                        lblVolgendeTimer.Content = listQuestions[_listNumber][0].timer.ToString();
+
+                        switch (listQuestions[_listNumber][0].rightAnswer)
+                        {
+                            case 1:
+                                lblVolgendeRA.Content = listQuestions[_listNumber][0].answer1;
+                                break;
+                            case 2:
+                                lblVolgendeRA.Content = listQuestions[_listNumber][0].answer2;
+                                break;
+                            case 3:
+                                lblVolgendeRA.Content = listQuestions[_listNumber][0].answer3;
+                                break;
+                            case 4:
+                                lblVolgendeRA.Content = listQuestions[_listNumber][0].answer4;
+                                break;
+                        }
                         break;
                     case quizState.GAMESTATE.SHOW_DIVIDER:
                         QuizSpelenUser.NextDivider(questionNumber.ToString());
                         quizState.gamestate = quizState.GAMESTATE.SHOW_NEXT_QUESTION;
-                        break;
+                            break;
                     case quizState.GAMESTATE.SHOW_NEXT_QUESTION:
                         getalTimer = listQuestions[_listNumber][0].timer;
                         QuizSpelenUser.UpdateTimer(getalTimer);
@@ -147,16 +260,97 @@ namespace QuizTime
                         timer.Start();
                         _listNumber++;
                         questionNumber++;
+                        if (listQuestions.Count > _listNumber)
+                        {
+                            lblVolgendeVraag.Content = listQuestions[_listNumber][0].question;
+                            lblVolgendeA1.Content = listQuestions[_listNumber][0].answer1;
+                            lblVolgendeA2.Content = listQuestions[_listNumber][0].answer2;
+                            lblVolgendeA3.Content = listQuestions[_listNumber][0].answer3;
+                            lblVolgendeA4.Content = listQuestions[_listNumber][0].answer4;
+                            lblVolgendeTimer.Content = listQuestions[_listNumber][0].timer.ToString();
+
+                            switch (listQuestions[_listNumber][0].rightAnswer)
+                            {
+                                case 1:
+                                    lblVolgendeRA.Content = listQuestions[_listNumber][0].answer1;
+                                    break;
+                                case 2:
+                                    lblVolgendeRA.Content = listQuestions[_listNumber][0].answer2;
+                                    break;
+                                case 3:
+                                    lblVolgendeRA.Content = listQuestions[_listNumber][0].answer3;
+                                    break;
+                                case 4:
+                                    lblVolgendeRA.Content = listQuestions[_listNumber][0].answer4;
+                                    break;
+                            }
+                        } else
+                        {
+                            lblVolgendeVraag.Content = "Geen volgende vraag meer";
+                            lblVolgendeA1.Content = "Geen volgende vraag meer";
+                            lblVolgendeA2.Content = "Geen volgende vraag meer";
+                            lblVolgendeA3.Content = "Geen volgende vraag meer";
+                            lblVolgendeA4.Content = "Geen volgende vraag meer";
+                            lblVolgendeRA.Content = "Geen volgende vraag meer";
+                            lblVolgendeTimer.Content = "Geen volgende vraag meer";
+                        }
                         break;
                     case quizState.GAMESTATE.SHOW_CHECK_QUESTIONS:
-                        QuizSpelenUser.NextQuestionAnswer(listQuestions[_listNumber][0].answer1, listQuestions[_listNumber][0].answer2, listQuestions[_listNumber][0].answer3, listQuestions[_listNumber][0].answer4, listQuestions[_listNumber][0].question, getalTimer, listQuestions[_listNumber][0].image);
-                        _listNumber++;
-                        questionNumber++;
-                        quizState.gamestate = quizState.GAMESTATE.SHOW_CHECK_RIGHTANSWERS;
+                        if (questionNumber > listQuestions.Count)
+                        {
+                            QuizSpelenUser.gridTussenSchermEnd.Visibility = Visibility.Visible;
+                            quizState.gamestate = quizState.GAMESTATE.QUIZ_END;
+                        }
+                        else
+                        {
+                            QuizSpelenUser.NextQuestionAnswer(listQuestions[_listNumber][0].answer1, listQuestions[_listNumber][0].answer2, listQuestions[_listNumber][0].answer3, listQuestions[_listNumber][0].answer4, listQuestions[_listNumber][0].question, getalTimer, listQuestions[_listNumber][0].image);
+                            quizState.gamestate = quizState.GAMESTATE.SHOW_CHECK_RIGHTANSWERS;
+                            if (listQuestions.Count > _listNumber + 1)
+                            {
+                                lblVolgendeVraag.Content = listQuestions[_listNumber + 1][0].question;
+                                lblVolgendeA1.Content = listQuestions[_listNumber + 1][0].answer1;
+                                lblVolgendeA2.Content = listQuestions[_listNumber + 1][0].answer2;
+                                lblVolgendeA3.Content = listQuestions[_listNumber + 1][0].answer3;
+                                lblVolgendeA4.Content = listQuestions[_listNumber + 1][0].answer4;
+                                lblVolgendeTimer.Content = listQuestions[_listNumber + 1][0].timer.ToString();
+
+                                switch (listQuestions[_listNumber + 1][0].rightAnswer)
+                                {
+                                    case 1:
+                                        lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer1;
+                                        break;
+                                    case 2:
+                                        lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer2;
+                                        break;
+                                    case 3:
+                                        lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer3;
+                                        break;
+                                    case 4:
+                                        lblVolgendeRA.Content = listQuestions[_listNumber + 1][0].answer4;
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                lblVolgendeVraag.Content = "Geen volgende vraag meer";
+                                lblVolgendeA1.Content = "Geen volgende vraag meer";
+                                lblVolgendeA2.Content = "Geen volgende vraag meer";
+                                lblVolgendeA3.Content = "Geen volgende vraag meer";
+                                lblVolgendeA4.Content = "Geen volgende vraag meer";
+                                lblVolgendeRA.Content = "Geen volgende vraag meer";
+                                lblVolgendeTimer.Content = "Geen volgende vraag meer";
+                            }
+                        }
                         break;
                     case quizState.GAMESTATE.SHOW_CHECK_RIGHTANSWERS:
                         QuizSpelenUser.ShowAnswer(listQuestions[_listNumber][0].rightAnswer);
                         quizState.gamestate = quizState.GAMESTATE.SHOW_CHECK_QUESTIONS;
+                        _listNumber++;
+                        questionNumber++;
+                        break;
+                    case quizState.GAMESTATE.QUIZ_END:
+                        this.Close();
+                        QuizSpelenUser.Close();
                         break;
                 }
             }
