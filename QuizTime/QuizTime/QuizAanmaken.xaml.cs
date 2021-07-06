@@ -517,7 +517,11 @@ namespace QuizTime
         {
             if (listQuestions.Count == 9 && txbAnswer1.Text != "" && txbAnswer2.Text != "" && txbQuizVraag.Text != "")
             {
-                if (txbAnswer1.Text == "" || txbAnswer2.Text == "")
+                if (listQuestions.Count < 10)
+                {
+                    System.Windows.MessageBox.Show("Error: Maak minimaal 10 vragen aan");
+                }
+                else if (txbAnswer1.Text == "" || txbAnswer2.Text == "")
                 {
                     System.Windows.MessageBox.Show("Error: Vul minimaal 2 antwoorden in");
                 }
@@ -678,31 +682,41 @@ namespace QuizTime
             }
             else if (txbAnswer1.Text == "" && txbAnswer2.Text == "")
             {
-                string json = JsonConvert.SerializeObject(listQuestions);
-                database.SaveQuiz(txbQuizTitel.Text, json);
-
-                for (int i = 0; i < listSelectedImages.Count; i++)
+                if (listQuestions.Count < 10)
                 {
-                    if (_questionNumber > listQuestions.Count)
-                    {
-                        destinationPath = GetDestinationPath(_imgNaam, "Images");
-                    }
-                    else
-                    {
-                        destinationPath = GetDestinationPath(listQuestions[i][0].image, "Images");
-                    }
+                    System.Windows.MessageBox.Show("Error: Maak minimaal 10 vragen aan");
+                } else
+                {
+                    string json = JsonConvert.SerializeObject(listQuestions);
+                    database.SaveQuiz(txbQuizTitel.Text, json);
 
-                    if (listSelectedImages[i] != null)
+                    for (int i = 0; i < listSelectedImages.Count; i++)
                     {
-                        File.Copy(listSelectedImages[i], destinationPath, true);
+                        if (_questionNumber > listQuestions.Count)
+                        {
+                            destinationPath = GetDestinationPath(_imgNaam, "Images");
+                        }
+                        else
+                        {
+                            destinationPath = GetDestinationPath(listQuestions[i][0].image, "Images");
+                        }
+
+                        if (listSelectedImages[i] != null)
+                        {
+                            File.Copy(listSelectedImages[i], destinationPath, true);
+                        }
                     }
+                    System.Windows.MessageBox.Show("Gelukt");
+                    this.Close();
                 }
-                System.Windows.MessageBox.Show("Gelukt");
-                this.Close();
             }
             else
-            {
-                if (txbAnswer1.Text == "" || txbAnswer2.Text == "")
+            {   
+                if (listQuestions.Count < 10)
+                {
+                    System.Windows.MessageBox.Show("Error: Maak minimaal 10 vragen aan");
+                }
+                else if (txbAnswer1.Text == "" || txbAnswer2.Text == "")
                 {
                     System.Windows.MessageBox.Show("Error: Vul minimaal 2 antwoorden in");
                 }
